@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:lichess_mobile/src/app_initialization.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -76,6 +79,19 @@ Future<Database> openDb(DatabaseFactory dbFactory, String path) async {
       onDowngrade: onDatabaseDowngradeDelete,
     ),
   );
+}
+
+Future<double> getDatabaseSizeInMB() async {
+  final dbDirectory = await getApplicationDocumentsDirectory();
+  final dbPath = join(dbDirectory.path, kLichessDatabaseName);
+  final dbFile = File(dbPath);
+
+  if (await dbFile.exists()) {
+    final dbFileSize = await dbFile.length();
+    return dbFileSize / (1024 * 1024);
+  }
+
+  return 0.0;
 }
 
 void _createPuzzleBatchTableV1(Batch batch) {

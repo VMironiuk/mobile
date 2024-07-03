@@ -17,6 +17,7 @@ import 'package:lichess_mobile/src/utils/package_info.dart';
 import 'package:lichess_mobile/src/view/account/profile_screen.dart';
 import 'package:lichess_mobile/src/widgets/adaptive_action_sheet.dart';
 import 'package:lichess_mobile/src/widgets/adaptive_choice_picker.dart';
+import 'package:lichess_mobile/src/widgets/database_info.dart';
 import 'package:lichess_mobile/src/widgets/feedback.dart';
 import 'package:lichess_mobile/src/widgets/list.dart';
 import 'package:lichess_mobile/src/widgets/misc.dart';
@@ -388,25 +389,7 @@ class _Body extends ConsumerWidget {
           ),
         ],
       ),
-      ListSection(
-        hasLeading: true,
-        showDivider: true,
-        children: [
-          PlatformListTile(
-            leading: const Icon(Icons.delete),
-            title: const Text('Delete databases'),
-            trailing: const Text(
-              '1024 MB', 
-              style: TextStyle(
-                fontWeight: FontWeight.w200,
-                ),
-            ),
-            onTap: () {
-              print('DELETE DATABASE');
-            },
-          ),
-        ],
-      ),
+      DatabaseInfo(),
       Padding(
         padding: Styles.bodySectionPadding,
         child: Column(
