@@ -101,9 +101,6 @@ Future<void> deleteDatabaseFile() async {
 
   if (await dbFile.exists()) {
     dbFile.delete();
-    print('Database file deleted successfully.');
-  } else {
-    print('Database file does not exist.');
   }
 }
 
