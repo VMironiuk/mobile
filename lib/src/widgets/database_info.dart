@@ -39,7 +39,7 @@ class _DatabaseInfoState extends State<DatabaseInfo> {
             ),
           ),
           onTap: () {
-            print('DELETE DATABASE');
+            deleteDatabaseFile();
           },
         ),
       ],

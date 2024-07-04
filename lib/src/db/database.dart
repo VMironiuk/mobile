@@ -94,6 +94,19 @@ Future<double> getDatabaseSizeInMB() async {
   return 0.0;
 }
 
+Future<void> deleteDatabaseFile() async {
+  final dbDirectory = await getApplicationDocumentsDirectory();
+  final dbPath = join(dbDirectory.path, kLichessDatabaseName);
+  final dbFile = File(dbPath);
+
+  if (await dbFile.exists()) {
+    dbFile.delete();
+    print('Database file deleted successfully.');
+  } else {
+    print('Database file does not exist.');
+  }
+}
+
 void _createPuzzleBatchTableV1(Batch batch) {
   batch.execute('DROP TABLE IF EXISTS puzzle_batchs');
   batch.execute('''
